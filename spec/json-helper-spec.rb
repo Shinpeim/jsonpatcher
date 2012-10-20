@@ -18,7 +18,7 @@ describe "simple object fixman" do
   let (:fixman) do
     JSON::Fixman.new {
       object {
-        key :age, process{|v|v.to_i}
+        property :age, process{|v|v.to_i}
       }
     }
   end
@@ -33,7 +33,7 @@ describe "nested array fixman" do
     JSON::Fixman.new {
       array {
         object {
-          key :age, process{|v|v.to_i}
+          property :age, process{|v|v.to_i}
         }
       }
     }
@@ -48,9 +48,9 @@ describe "nested object fixman" do
   let (:fixman) do
     JSON::Fixman.new {
       object {
-        key "following", array {
+        property "following", array {
           object {
-            key :age, process {|v|v.to_i}
+            property :age, process {|v|v.to_i}
           }
         }
       }

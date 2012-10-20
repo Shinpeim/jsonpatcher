@@ -58,7 +58,7 @@ module JSON
 
       private
       #method for DSL
-      def key(key,fixer)
+      def property(key,fixer)
         @fixers ||= {}
         @fixers[key.to_s] = fixer
       end
