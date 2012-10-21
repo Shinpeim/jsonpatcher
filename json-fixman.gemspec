@@ -5,7 +5,7 @@ require 'json-fixman/version'
 
 Gem::Specification.new do |gem|
   gem.name          = "json-fixman"
-  gem.version       = Json::Fixman::VERSION
+  gem.version       = JSON::Fixman::VERSION
   gem.authors       = ["Shinpei Maruyama"]
   gem.email         = ["shinpeim@gmail.com"]
   gem.description   = "description"
