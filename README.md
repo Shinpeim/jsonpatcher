@@ -1,12 +1,12 @@
-# Json::Fixman
+# JSONPatcher
 
-TODO: Write a gem description
+jsonpatcher provides a DSL to patch semantically bad JSON
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
-    gem 'json-fixman'
+    gem 'jsonpatcher'
 
 And then execute:
 
@@ -14,11 +14,11 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install json-fixman
+    $ gem install jsonpatcher
 
 ## Usage
 
-TODO: Write usage instructions here
+
 
 ## Contributing
 
