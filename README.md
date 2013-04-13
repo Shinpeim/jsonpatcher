@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Shinpeim/jsonpatcher.png)](https://travis-ci.org/Shinpeim/jsonpatcher.png)
+
 # JSONPatcher
 
 jsonpatcher provides a DSL to patch semantically wrong JSON
