@@ -17,7 +17,49 @@ Or install it yourself as:
     $ gem install jsonpatcher
 
 ## Usage
+    require 'jsonpatcher'
 
+    # patch array
+    bad_json = '["1","2","3"]' # (elements should be Number)
+    patcher = JSONPatcher.new {
+      array ->(element){ element.to_i }
+    }
+    p patcher.patch(bad_json) #=> [1, 2, 3]
+
+    # patch object
+    bad_json = '{"name":"shinpei","age":"28"}' # (age should be Number)
+    patcher = JSONPatcher.new {
+      object {
+        property :age, ->(v){ v.to_i }
+      }
+    }
+    p patcher.patch(bad_json) # => '{"name":"shinpei","age":28}'
+
+    # patch array of objects
+    bad_json = '[{"name":"shinpei","age":"28"},{"name":"kosuge","age":"22"}]'
+    patcher = JSONPatcher.new {
+      array {
+        object {
+          property :age, ->(v){ v.to_i }
+        }
+      }
+    }
+    p patcher.patch(bad_json) # => '[{"name":"shinpei","age":28},{"name":"kosuge","age":22}]'
+
+    # patch nested object
+    bad_json = '{"following":[{"name":"shinpei","age":"28"},{"name":"kosuge","age":"22"}]}'
+    patcher = JSONPatcher.new {
+      object {
+        property (:following) {
+          array {
+            object {
+              property :age, ->(v){ v.to_i }
+            }
+          }
+        }
+      }
+    }
+    p patcher.patch(bad_json) # => '{"following":[{"name":"shinpei","age":28},{"name":"kosuge","age":22}]}'
 
 
 ## Contributing
