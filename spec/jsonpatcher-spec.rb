@@ -4,13 +4,11 @@ describe JSONPatcher do
   context "when simple array JSON is given" do
     let (:patcher) do
       JSONPatcher.new {
-        array {
-          process {|element| element.to_i}
-        }
+        array ->(element){ element.to_i }
       }
     end
-    describe "#fix" do
-      subject {patcher.fix('["1","2","3"]')}
+    describe "#patch" do
+      subject { patcher.patch('["1","2","3"]') }
       it "should be array of integers" do should == '[1,2,3]' end
     end
   end
@@ -19,12 +17,12 @@ describe JSONPatcher do
     let (:patcher) do
       JSONPatcher.new {
         object {
-          property :age, process{|v|v.to_i}
+          property :age, ->(v){ v.to_i }
         }
       }
     end
-    describe "#fix" do
-      subject {patcher.fix('{"name":"shinpei","age":"28"}')} #fuck! age should be number!
+    describe "#patch" do
+      subject { patcher.patch('{"name":"shinpei","age":"28"}') }
       it {should == '{"name":"shinpei","age":28}'}
     end
   end
@@ -34,13 +32,13 @@ describe JSONPatcher do
       JSONPatcher.new {
         array {
           object {
-            property :age, process{|v|v.to_i}
+            property :age, ->(v){ v.to_i }
           }
         }
       }
     end
-    describe "#fix" do
-      subject {patcher.fix('[{"name":"shinpei","age":"28"},{"name":"kosuge","age":"22"}]')}
+    describe "#patch" do
+      subject {patcher.patch('[{"name":"shinpei","age":"28"},{"name":"kosuge","age":"22"}]')}
       it {should == '[{"name":"shinpei","age":28},{"name":"kosuge","age":22}]'}
     end
   end
@@ -49,16 +47,18 @@ describe JSONPatcher do
     let (:patcher) do
       JSONPatcher.new {
         object {
-          property "following", array {
-            object {
-              property :age, process {|v|v.to_i}
+          property (:following) {
+            array {
+              object {
+                property :age, ->(v){ v.to_i }
+              }
             }
           }
         }
       }
     end
-    describe "#fix" do
-      subject {patcher.fix('{"following":[{"name":"shinpei","age":"28"},{"name":"kosuge","age":"22"}]}')}
+    describe "#patch" do
+      subject {patcher.patch('{"following":[{"name":"shinpei","age":"28"},{"name":"kosuge","age":"22"}]}')}
       it {should == '{"following":[{"name":"shinpei","age":28},{"name":"kosuge","age":22}]}'}
     end
   end
