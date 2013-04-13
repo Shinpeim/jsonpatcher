@@ -8,8 +8,8 @@ Gem::Specification.new do |gem|
   gem.version       = JSONPatcher::VERSION
   gem.authors       = ["Shinpei Maruyama"]
   gem.email         = ["shinpeim@gmail.com"]
-  gem.description   = "patches bad json"
-  gem.summary       = "jsopatcher provides DSL to patch semanticaly bad json"
+  gem.description   = "patches semantically wrong json"
+  gem.summary       = "jsopatcher provides DSL to patch semantically wrong json"
   gem.homepage      = "https://github.com/Shinpeim/jsonpatcher"
 
   gem.files         = `git ls-files`.split($/)

@@ -1,6 +1,6 @@
 # JSONPatcher
 
-jsonpatcher provides a DSL to patch semantically bad JSON
+jsonpatcher provides a DSL to patch semantically wrong JSON
 
 ## Installation
 
