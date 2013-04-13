@@ -19,4 +19,5 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency "json", "~> 1.7.7"
   gem.add_development_dependency "rspec"
+  gem.add_development_dependency "rake"
 end
